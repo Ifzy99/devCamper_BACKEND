@@ -28,6 +28,14 @@ const reviews = require("./routes/reviews");
 
 const app = express();
 
+// Set Content Security Policy header
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "script-src 'self'");
+  next();
+});
+
+app.use(express.static("public"));
+
 //Body Parser
 app.use(express.json());
 
